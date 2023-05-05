@@ -1,20 +1,41 @@
-import {MainWindow } from "./mainWindow"
+import {useEffect} from "react";
+import {MainWindow} from "./mainWindow"
+import {Description} from "./description"
+
+
+function SetProgress() {
+  const setter = () => {
+    for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
+      e.style.setProperty('--value', e.value);
+      e.style.setProperty('--min', e.min === '' ? '0' : e.min);
+      e.style.setProperty('--max', e.max === '' ? '100' : e.max);
+      e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+    }
+  }
+
+  useEffect(()=>
+  {
+    setter()
+  })
+}
 
 export function MainPage() {
+    SetProgress();
     return (
         <>
-          <p className="header">
-             Clothes Stable Diffusion
-          </p>
-          <ul type="circle" className="description">
-            <li>Загрузите изображение с предметом одежды</li>
-            <li>Выделите необходимый предмет одежды</li>
-            <li>Примените выделение для получения описания предмета одежды</li>
-            <li>На основе полученного описания введите описание дизайна/выделенного предмета в поле «Подсказка»</li>
-            <li>Нажмите «Сгенерировать» для создания изображения</li>
-            <li>В разделе «Параметры...» можно изменить параметры/ гнерации изображения</li>
-          </ul>
+          <Description/>
           <MainWindow/>
         </>
     )
 }
+
+/*
+Progress
+https://toughengineer.github.io/demo/slider-styler/slider-styler.html#explanation
+for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
+  e.style.setProperty('--value', e.value);
+  e.style.setProperty('--min', e.min == '' ? '0' : e.min);
+  e.style.setProperty('--max', e.max == '' ? '100' : e.max);
+  e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+}
+*/
