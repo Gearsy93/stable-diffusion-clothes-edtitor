@@ -4,21 +4,23 @@ import {SelectionToPromptBlock} from "./selectionToPrompt"
 import {InputImageBody} from "./inputImageBody"
 import {InputDrop} from "./inputDrop"
 import {useState} from "react"
-import React from "react"
+
 
 //Add default values for params
 
-function ImageOrDropBody({image, setImage}) {
-    if (image) return <InputImageBody image={image}/>
+function ImageOrDropBody({image, setImage, setClippedImg}) {
+    if (image) return <InputImageBody image={image} setClippedImg={setClippedImg}/>
     else return  <InputDrop setImage={setImage} image={image}/>;
 }
 
 export function InputWindow() {
     const [image, setImage] = useState(null);
+    const [clippedImg, setClippedImg] = useState();
 
     return (
         <div className="sub-window">
-            <ImageOrDropBody image={image} setImage={setImage}/>
+            <ImageOrDropBody image={image} setImage={setImage} setClippedImg={setClippedImg}/>
+            <img src={clippedImg} alt="error loading source"/>
             <SelectionToPromptBlock/>
             <PromptBlock/>
             <ParamBlock label={'Ширина'} min={100} max={1920} defaultValue={640} measure={'px'}/>

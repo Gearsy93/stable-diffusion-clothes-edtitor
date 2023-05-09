@@ -1,7 +1,7 @@
 .main-window {
     background: #FFF4E2;
     border: 2px solid #FFBB55;
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
     flex-flow: row;
     height: fit-content;
@@ -18,12 +18,16 @@
     margin: 20px;
     width: 50%;
     position: relative;
+    padding: 15px;
 }
 
 .input-image-body {
-    background: #FFE7C2;
-    margin: 10px;
+    padding: 15px;
+    border-radius: 6px;
+    background: #f8d6a2;
     margin-bottom: 15px;
     max-width: 100%;
     height: 80%;
+    display:flex;
+    justify-content: center;
 }

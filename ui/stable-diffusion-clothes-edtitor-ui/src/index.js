@@ -7,6 +7,7 @@ import './styleSheets/mainPage.css'
 import './styleSheets/mainWindow.css'
 import './styleSheets/inputWindow.css'
 import './styleSheets/resultWindow.css'
+import './styleSheets/progressBar.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

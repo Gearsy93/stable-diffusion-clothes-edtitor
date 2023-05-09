@@ -1,12 +1,4 @@
-.input-drop {
-    background: #FFE7C2;
-    border: 2px dashed #FFBB55;
-    margin: 10px;
-    margin-bottom: 15px;
-    max-width: 100%;
-    height: 80%;
-}
-
+/* Раздел загрузки изображения */
 .upload-image {
     
     display: flex;
@@ -37,8 +29,12 @@
     background: #f5a124;
 }
 
+.browse-button:active {
+  background: #FFBB55;
+}
+
+/* Элемент задания параметром*/
 .param-input {
-    margin: 15px;
     margin-top: 30px;
 }
 
@@ -83,10 +79,11 @@
     font-weight: 450;
 }
 
+/* Элемент применения выделения + описание выделенного изображения (или не только?) через Interrogator*/
 .apply-selection {
     display: flex;
     flex-direction: row;
-    margin: 15px;
+    margin-top: 15px;
     margin-bottom: 0px;
     width: auto;
     height: auto;
@@ -107,6 +104,11 @@
     background: #f5a124;
 }
 
+.apply-selection-button:active {
+  background: #FFBB55;
+}
+
+
 .prompt-generation-result-box {
     background: #FFF4E2;
     border: 2px solid #FFBB55;
@@ -116,12 +118,14 @@
     width: 100%;
 }
 
+/* Значение параметра */
 .param-output {
     margin: 2px;
     margin-right: 10px;
     width: fit-content;
 }
 
+/* Слайдер параметров */
 input[type=range].styled-slider {
     height: 7px;
     background: #FFF4E2;
@@ -132,7 +136,6 @@ input[type=range].styled-slider {
     -webkit-appearance: none;
   }
 
-/*progress support*/
 input[type=range].styled-slider.slider-progress {
     --range: calc(var(--max) - var(--min));
     --ratio: calc((var(--value) - var(--min)) / var(--range));
@@ -194,14 +197,10 @@ input[type=range].styled-slider.slider-progress:active::-webkit-slider-runnable-
   background: linear-gradient(#FFBB55,#FFBB55) 0/var(--sx) 100% no-repeat, #FFF4E2;
 }
 
-
-
-
-
+/* Форма загрузки изображений */
 .form-file-upload {
   background: #FFE7C2;
   border: 2px dashed #FFBB55;
-  margin: 15px;
   margin-bottom: 15px;
   max-width: 100%;
   height: 80%;
@@ -246,3 +245,5 @@ input[type=range].styled-slider.slider-progress:active::-webkit-slider-runnable-
   bottom: 0px;
   left: 0px;
 }
+
+/* Элементы работы с выделением */
