@@ -8,7 +8,6 @@
 .input-drop {
     background: #FFE7C2;
     border: 2px dashed #FFBB55;
-    margin-bottom: 15px;
     max-width: 100%;
     height: 80%;
 }
@@ -17,6 +16,7 @@
     border: 2px solid #FFBB55;
     border-radius: 8px;
     width: fit-content; 
+    height: fit-content;
     padding-top: 0px;
     grid-area: 1 / 1 / 2 / 2;
 }
@@ -24,10 +24,9 @@
 .result-sub-window {
     background: #FFF4E2;
     margin-top: 35px !important;
-    height: auto;
+    height: fit-content;
     width: auto;
     margin-top: 0px;
-    padding-bottom: 10px;
     border: 2px solid #FFBB55;
     border-radius: 8px; 
     grid-area: 1 / 1 / 2 / 2;
@@ -58,11 +57,10 @@
     border: 2px solid #FFBB55;
     border-radius: 8px;
     background: #FFF4E2;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 0px;
+    margin-top: 15px;
     width: 100%;
     height: 30px;
+    font-family: "Montserrat Medium";
 }
 
 .result-button:hover {
@@ -87,6 +85,7 @@
 
 .result-button-text {
     margin: 0px;
+    margin-top: -2px;
     text-align: center;
     font-size: 110%;
     font-weight: 700;
@@ -95,4 +94,12 @@
 /* Прогресс генерации */
 .progress-bar {
     height: 10px;
+}
+
+.manualPrompt {
+    background: none;
+    outline: none;
+    font-family: "Montserrat Medium";
+    font-weight: 550;
+    font-size: 15px;
 }

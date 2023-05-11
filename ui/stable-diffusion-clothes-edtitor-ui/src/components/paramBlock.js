@@ -1,27 +1,82 @@
-import {useState} from 'react';
+import {useState, useRef, useEffect} from 'react';
+
 
 //Change Output to Input (чтоб можно было вводить значения)
 
-export function ParamBlock({label, min, max, defaultValue, measure}) {
+export function ParamBlock({label, min, max, defaultValue, setDefaultValue, measure}) {
     const measureValue = measure === undefined ? '' : measure;
-    const [inputValue, setInputValue] = useState(defaultValue);
+    const [content, setContent] = useState(defaultValue);
+    const [width, setWidth] = useState(0);
+    const span = useRef();
+
+    useEffect(() => {
+        setWidth(span.current.offsetWidth);     
+
+        // Линия прогресса меняется с useState
+        for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
+            e.style.setProperty('--value', e.value);
+            e.style.setProperty('--min', e.min === '' ? '0' : e.min);
+            e.style.setProperty('--max', e.max === '' ? '100' : e.max);
+            e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+          }    
+    }, [content]);
+
+    function isNumeric(str) {
+        if (typeof str != "string") return false // we only process strings!  
+        return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+               !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+      }
 
     const handleChange = event =>  {
-        setInputValue(event.target.value)
+        if (isNumeric(event.target.value)) {
+            if (event.target.value < min) {
+                setContent(min)
+               setDefaultValue(min)
+            }
+            else if (event.target.value > max) {
+                setContent(max)
+                setDefaultValue(max)
+            }
+            else {
+                setContent(event.target.value)
+                setDefaultValue(event.target.value)
+            }
+        } 
     };
 
+    const handleManualChange = event => {
+        if (isNumeric(event.target.value)) {
+            if (event.target.value < min) {
+                setContent(min)
+                setDefaultValue(min)
+            }
+            else if (event.target.value > max) {
+                setContent(max)
+                setDefaultValue(max)
+            }
+            else {
+                setContent(event.target.value)
+                setDefaultValue(event.target.value)
+            }
+        }
+    }
+    
     return (
-        <div className="param-input">
+        <div className="param-input" style={{userSelect: 'none'}}>
             <div className="param-input-label">
                 <p className="param-input-label-text">
                     {label}
                 </p>
             </div>
             <div className="param-input-body">
-                <input className="styled-slider slider-progress" type="range" min={min} max={max} defaultValue={inputValue} onChange={handleChange} step="1"/>
-                <output className="param-output" id={label}>
-                    {inputValue + measureValue}
-                </output>
+                <input className="styled-slider slider-progress" type="range" min={min} max={max} value={content} onChange={handleChange} step="1"/>
+                <div style={{userSelect: 'none'}}>
+                    <span id="hide" ref={span} style={{userSelect: 'none'}}>{content}</span>
+                    <input type='text' className='param-output' style={{ width, userSelect: 'none'}} autoFocus onChange={handleManualChange}/>
+                </div>
+                <div className='measure-margin'>
+                    {measureValue}
+                </div>
             </div>
         </div>
     )

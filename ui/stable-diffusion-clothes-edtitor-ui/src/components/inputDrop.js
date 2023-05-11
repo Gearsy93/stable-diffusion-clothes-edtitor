@@ -1,4 +1,5 @@
-import uploadImage from '../data/upload.png';
+import { IconContext } from "react-icons";
+import {IoCloudUploadOutline} from "react-icons/io5";
 import {useState, useRef} from "react";
 
 export function InputDrop({setImage}) {
@@ -45,7 +46,9 @@ export function InputDrop({setImage}) {
         <form className="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
             <input ref={inputRef} type="file" className="input-file-upload" multiple={true} onChange={handleChange} />
             <label id="label-file-upload" htmlFor="input-file-upload" className={dragActive ? "drag-active" : "" }>
-                <img src={uploadImage} alt="Загрузить изображение" width="100px"/>
+                <IconContext.Provider value={{ color: "#000", className: "io5", size: "25px"}}>
+                    <IoCloudUploadOutline size={100}/>
+                </IconContext.Provider>
                 <p className="upload-text">
                     Переместите изображение сюда <br/>
                     для загрузки

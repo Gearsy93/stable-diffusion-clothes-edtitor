@@ -1,6 +1,8 @@
 import {useEffect} from "react";
 import {MainWindow} from "./mainWindow"
 import {Description} from "./description"
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function SetProgress() {
@@ -25,6 +27,7 @@ export function MainPage() {
         <>
           <Description/>
           <MainWindow/>
+          <ToastContainer/>
         </>
     )
 }

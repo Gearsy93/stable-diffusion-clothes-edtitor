@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    height: calc(50vh - 34px);
 }
 
 .upload-text {
@@ -43,11 +43,11 @@
     border: 2px solid #FFBB55;
     border-radius: 8px;
     max-width: 100%;
-    height: 25px;
+    width: 100%;
+    min-height: 25px;
     margin-top: 25px;
     position: relative;
     display: flex;
-    flex-direction: row;
 }
 
 .param-input-label {
@@ -87,6 +87,7 @@
     margin-bottom: 0px;
     width: auto;
     height: auto;
+    align-items: stretch;
 }
 
 .apply-selection-button {
@@ -98,6 +99,7 @@
     padding: 20px;
     padding-bottom: 5px;
     padding-top: 5px;
+    height: fit-content;
 }
 
 .apply-selection-button:hover {
@@ -110,19 +112,47 @@
 
 
 .prompt-generation-result-box {
-    background: #FFF4E2;
-    border: 2px solid #FFBB55;
-    border-radius: 8px;
-    margin-left: 10px;
-    height: auto;
-    width: 100%;
+  background: #f5e8d5;
+  border: 2px solid #d6cbbb;
+  border-radius: 8px;
+  margin-left: 10px;
+  width: 100%;
+  min-width: 0;
+  overflow-wrap: break-word;
+  padding: 5px;
+  font-size: 15px;
+  margin-top: 0px;
+}
+
+.gen-prompt-text {
+  margin-top: -4px;
 }
 
 /* Значение параметра */
 .param-output {
-    margin: 2px;
-    margin-right: 10px;
-    width: fit-content;
+    border: none;
+    background: #FFF4E2;
+    font-family: "Montserrat Medium";
+    padding-right: 0px;
+    margin-top: 2px;
+    outline: none;
+    color: #FFF4E2;
+    opacity: none;
+    max-width: 100% !important;
+}
+
+#hide {
+  opacity: none;
+  position: absolute;
+  pointer-events: none;
+  margin-right: 0px;
+  margin-top: 1px;
+}
+
+.measure-margin {
+  margin-right: 7px;
+  pointer-events: none;
+  margin-left: -3px;
 }
 
 /* Слайдер параметров */
@@ -201,7 +231,6 @@ input[type=range].styled-slider.slider-progress:active::-webkit-slider-runnable-
 .form-file-upload {
   background: #FFE7C2;
   border: 2px dashed #FFBB55;
-  margin-bottom: 15px;
   max-width: 100%;
   height: 80%;
 }
@@ -247,3 +276,40 @@ input[type=range].styled-slider.slider-progress:active::-webkit-slider-runnable-
 }
 
 /* Элементы работы с выделением */
+.lasso-box {
+  flex:1;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-buttons-field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.edit-button-shape {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #FFBB55;
+  background: #FFE7C2;
+  border-radius: 7px;
+}
+
+.edit-button-shape:hover {
+  background: #FFF4E2;
+}
+
+.edit-button-shape:active {
+  background: #FFE7C2;
+}
+
+/* Измененеи размера поля ввода подсказки */
+textarea {
+  resize: none;
+}

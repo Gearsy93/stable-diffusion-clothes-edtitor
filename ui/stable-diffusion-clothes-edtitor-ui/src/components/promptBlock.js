@@ -1,4 +1,10 @@
-export function PromptBlock() {
+import {Textarea} from '@nextui-org/react';
+
+export function PromptBlock({prompt, setPrompt}) {
+
+    const OnPromptChange = function(e) {
+        setPrompt(e.target.value);
+    }
     return (
         <div className="param-input">
             <div className="param-input-label">
@@ -7,10 +13,10 @@ export function PromptBlock() {
                 </p>
             </div>
             <div className="param-input-body">
-                <p className="param-input-body-text">
-                    light green polka-dit shirt of man
-                </p>
+                <Textarea aria-labelledby=' ' placeholder='текст подсказки на латинице' onChange={OnPromptChange} animated={false} width='100%' css={{$$inputColor: "#FFF4E2", borderRadius: '7px'}} spellCheck='false' minRows={1}/>
             </div>
         </div>
     )
 }
+
+//<input type='text' className="manualPrompt" value={prompt} placeholder="prompt text" onChange={OnPromptChange}/>
