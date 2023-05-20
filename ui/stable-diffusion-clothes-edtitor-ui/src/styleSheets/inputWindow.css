@@ -1,0 +1,371 @@
+/* Раздел загрузки изображения */
+.upload-image {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(50vh - 34px);
+}
+
+.upload-text {
+    font-family: "Montserrat ExtraBold";
+    font-size: 24px; 
+    text-align: center;
+    color: rgb(46, 44, 44);
+}
+
+.browse-button {
+    height: 50px;
+    width: 190px;
+    background: #FFBB55;
+    border-radius: 8px;
+    border: none;
+    font-family: "Montserrat Medium";
+    font-size: 16px; 
+}
+
+.browse-button:hover {
+    background: #f5a124;
+}
+
+.browse-button:active {
+  background: #FFBB55;
+}
+
+/* Элемент задания параметром*/
+.param-input {
+    margin-top: 30px;
+}
+
+.param-input-body {
+    background: #FFF4E2;
+    border: 2px solid #FFBB55;
+    border-radius: 8px;
+    max-width: 100%;
+    width: 100%;
+    min-height: 25px;
+    margin-top: 25px;
+    position: relative;
+    display: flex;
+}
+
+.param-input-label {
+    background: #FFF4E2;
+    border: 2px solid #FFBB55;
+    border-radius: 8px;
+    position: absolute;
+    margin-left: 5px;
+    width: auto;
+    padding: 5px;
+    padding-top: 0px;
+    margin-top: -17px;
+    height: 20px
+}
+
+.param-input-label-text {
+    margin: 0px;
+    text-align: center;
+    font-size: 80%;
+    font-weight: 450;
+}
+
+.param-input-body-text {
+    margin: 4px;
+    margin-left: 7px;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 80%;
+    font-weight: 450;
+}
+
+/* Элемент применения выделения + описание выделенного изображения (или не только?) через Interrogator*/
+.apply-selection {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    width: auto;
+    height: auto;
+    align-items: stretch;
+}
+
+.apply-selection-button {
+    background: #FFBB55;
+    border-radius: 8px;
+    border: none;
+    font-family: "Montserrat Medium";
+    font-size: 16px; 
+    padding: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    height: fit-content;
+}
+
+.prompt-loading {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.apply-selection-button:hover {
+    background: #f5a124;
+}
+
+.apply-selection-button:active {
+  background: #FFBB55;
+}
+
+.prompt-generation-result-box {
+  background: #f5e8d5;
+  border: 2px solid #d6cbbb;
+  border-radius: 8px;
+  margin-left: 10px;
+  width: 100%;
+  min-width: 0;
+  overflow-wrap: break-word;
+  padding: 5px;
+  font-size: 15px;
+  margin-top: 0px;
+}
+
+.gen-prompt-text {
+  margin-top: -4px;
+}
+
+/* Значение параметра */
+.param-output {
+    border: none;
+    background: #FFF4E2;
+    font-family: "Montserrat Medium";
+    padding-right: 0px;
+    margin-top: 2px;
+    outline: none;
+    color: #FFF4E2;
+    opacity: none;
+    max-width: 100% !important;
+}
+
+#hide {
+  opacity: none;
+  position: absolute;
+  pointer-events: none;
+  margin-right: 0px;
+  margin-top: 1px;
+}
+
+.measure-margin {
+  margin-right: 7px;
+  pointer-events: none;
+  margin-left: -3px;
+}
+
+/* Слайдер параметров */
+input[type=range].styled-slider {
+    height: 7px;
+    background: #FFF4E2;
+    width: calc(100% - 20px);
+    vertical-align: middle;
+    margin: 7px;
+    margin-left: 10px;
+    -webkit-appearance: none;
+  }
+
+input[type=range].styled-slider.slider-progress {
+    --range: calc(var(--max) - var(--min));
+    --ratio: calc((var(--value) - var(--min)) / var(--range));
+    --sx: calc(0.5 * 15px + var(--ratio) * (100% - 15px));
+  }
+  
+  input[type=range].styled-slider:focus {
+    outline: none;
+  }
+  
+  /*webkit*/
+input[type=range].styled-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 1em;
+  background: #FFBB55;
+  border: none;
+  box-shadow: 0 0 2px black;
+  margin-top: calc(max((10px - 1px - 1px) * 0.5,0px) - 15px * 0.5);
+}
+  
+input[type=range].styled-slider::-webkit-slider-runnable-track {
+  margin-top: 2px;
+  height: 8px;
+  border: 1px solid #FFBB55;
+  border-radius: 0.5em;
+  background: #FFF4E2;
+  box-shadow: none;
+}
+  
+input[type=range].styled-slider::-webkit-slider-thumb:hover {
+  background: #f5a124;
+}
+
+input[type=range].styled-slider:hover::-webkit-slider-runnable-track {
+  background: #FFF4E2;
+  border-color: #FFBB55;
+}
+
+input[type=range].styled-slider::-webkit-slider-thumb:active {
+  background: #FFBB55;
+}
+
+input[type=range].styled-slider:active::-webkit-slider-runnable-track {
+  background: #FFF4E2;
+  border-color: #FFBB55;
+}
+
+input[type=range].styled-slider.slider-progress::-webkit-slider-runnable-track {
+  background: linear-gradient(#FFBB55,#FFBB55) 0/var(--sx) 100% no-repeat, #FFF4E2;
+}
+
+input[type=range].styled-slider.slider-progress:hover::-webkit-slider-runnable-track {
+  background: linear-gradient(#f5a124,#f5a124) 0/var(--sx) 100% no-repeat, #FFF4E2;
+}
+
+input[type=range].styled-slider.slider-progress:active::-webkit-slider-runnable-track {
+  background: linear-gradient(#FFBB55,#FFBB55) 0/var(--sx) 100% no-repeat, #FFF4E2;
+}
+
+/* Форма загрузки изображений */
+.form-file-upload {
+  background: #FFE7C2;
+  border: 2px dashed #FFBB55;
+  max-width: 100%;
+  height: 80%;
+}
+
+.input-file-upload {
+  display: none;
+}
+
+#label-file-upload {
+  height: calc(50vh - 34px);;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#label-file-upload.drag-active {
+  background-color: #FFF4E2;
+}
+
+.upload-button {
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+}
+
+.upload-button:hover {
+  text-decoration-line: underline;
+}
+
+.drag-file-element {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+/* Элементы работы с выделением */
+.lasso-box {
+  flex:1;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-buttons-field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.edit-button-shape {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #FFBB55;
+  background: #FFE7C2;
+  border-radius: 7px;
+}
+
+.edit-button-shape:hover {
+  background: #FFF4E2;
+}
+
+.edit-button-shape:active {
+  background: #FFE7C2;
+}
+
+/* Измененеи размера поля ввода подсказки */
+textarea {
+  resize: none;
+}
+
+/* Вкладки выделение и инструкции */
+.input-box {
+  display: grid;
+  width: 50%;
+  margin: 20px;
+}
+
+.input-tab-box {
+  grid-area: 1 / 1 / 2 / 2;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.input-selected-tab {
+  border: 2px solid #FFBB55;
+  background: #FFE7C2;
+  border-radius: 8px;
+  width: fit-content; 
+  height: fit-content + 3px;
+  margin-bottom: 3px;
+  padding-top: 0px;
+}
+
+.input-not-selected-tab {
+  width: fit-content; 
+  height: fit-content;
+  padding-top: 0px;
+  margin-top: 2px;
+}
+
+.input-hide-crutch {
+  position: relative;
+  margin: 0px;
+  width: 100%;
+  height: 8px;
+  background: #FFE7C2;
+  z-index:0
+}
+
+.input-selected-tab-text {
+  margin: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  font-size: 150%;
+  font-weight: 400;
+  padding-bottom: 3px;
+}

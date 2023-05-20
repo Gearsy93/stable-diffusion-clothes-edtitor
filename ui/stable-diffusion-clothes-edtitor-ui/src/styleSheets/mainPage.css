@@ -1,0 +1,24 @@
+.main-page {
+    display: grid;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.header {
+    font-family: "Montserrat Medium";
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 8px;
+    font-size: 32px; 
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.description {
+    font-family: "Montserrat ExtraLight";
+    font-size: 16px; 
+    font-weight: bold;
+    margin: 0%;
+    padding-left: 25px;
+}
