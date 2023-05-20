@@ -1,0 +1,10 @@
+anyio==3.6.2
+fastapi==0.95.1
+matplotlib-inline==0.1.6
+Pillow==9.5.0
+pip==21.3.1
+psutil==5.9.5
+pydantic==1.10.7
+pyngrok==6.0.0
+pyrsistent==0.19.3
+uvicorn==0.22.0

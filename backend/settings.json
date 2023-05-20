@@ -1,0 +1,8 @@
+{
+  "ngrokauthtoken": "1kBJmHye4MXdlO3Z9VDXMVBQP2K_3tjyCKtxgXxJo88bf3KFk",
+  "aihorde_api_key": "htBRlklBBBiOrolA9GgwvQ",
+  "aihorde_karras": "True",
+  "aihorde_sampler_name": "k_lms",
+  "facefixer_strength": 0.75,
+  "automatic-host": "http://212.33.245.26:63000"
+}
