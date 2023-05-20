@@ -13,7 +13,7 @@ export function PromptBlock({prompt, setPrompt}) {
                 </p>
             </div>
             <div className="param-input-body">
-                <Textarea aria-labelledby=' ' placeholder='текст подсказки на латинице' onChange={OnPromptChange} animated={false} width='100%' css={{$$inputColor: "#FFF4E2", borderRadius: '7px'}} spellCheck='false' minRows={1}/>
+                <Textarea aria-labelledby=' ' placeholder='Текст подсказки на латинице' onChange={OnPromptChange} animated={false} width='100%' style={{fontFamily: 'Montserrat Medium', fontSize: '15px'}} css={{$$inputColor: "#FFF4E2", borderRadius: '7px'}} spellCheck='false' minRows={2}/>
             </div>
         </div>
     )

@@ -12,12 +12,22 @@
 
 .sub-window {
     background: #FFE7C2;
-    border: 2px solid #FFBB55;
-    border-radius: 8px;
+    margin-top: 35px !important;
     height: fit-content;
-    margin: 20px;
-    width: 50%;
-    max-width: 50%;
+    width: auto;
+    border: 2px solid #FFBB55;
+    border-radius: 8px; 
+    grid-area: 1 / 1 / 2 / 2;
+    padding: 15px;
+}
+
+.fix-sub-window {
+    background: #FFE7C2;
+    height: fit-content;
+    width: auto;
+    border: 2px solid #FFBB55;
+    border-radius: 8px; 
+    grid-area: 1 / 1 / 2 / 2;
     padding: 15px;
 }
 

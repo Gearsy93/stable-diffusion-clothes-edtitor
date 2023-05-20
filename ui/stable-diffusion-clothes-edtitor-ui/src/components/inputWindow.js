@@ -3,41 +3,58 @@ import {ParamBlock} from "./paramBlock"
 import {SelectionToPromptBlock} from "./selectionToPrompt"
 import {InputImageBody} from "./inputImageBody"
 import {InputDrop} from "./inputDrop"
-import {useState} from "react"
+import {ModelInput} from "./modelInput"
+import {ServiceInput} from "./serviceInput"
+import {InputTabBox} from './inputTab'
+import {RemoveImage} from './lassoButtons';
+import ReactLoading from 'react-loading';
 
+function ImageOrDropBody({setSubWindow, setResultSubWindow, isLeftTab, image, setImage, setMask, setCompleteContour}) {
 
-//Add default values for params
+    function onRemoveImageClick() {
+        setSubWindow("fix-sub-window");
+        setResultSubWindow("fix-result-sub-window");
+        setCompleteContour(false);
+        setImage(null);
+    };
 
-function ImageOrDropBody({image, setImage, setMask, setCompleteContour}) {
-    if (image) return <InputImageBody image={image} setImage={setImage} setMask={setMask} setCompleteContour={setCompleteContour}/>
-    else return  <InputDrop setImage={setImage} image={image}/>;
-}
-
-function RenderProgressText({progress}) {
-    if (progress >= 4) {
-        return (
-            <p className='progress-text'>
-                {progress}%
-            </p>
-        )
-    }
-    else {
-        return <></>
-    }
-}    
-
-function ExpandParams({image, prompt, setPrompt, width, setWidth, height, setHeight, similatiry, setSimilarity, genSteps, setGenSteps, consistentSteps, setConsistentSteps}) {
     
-    
+
+    if (image)
+    {
+        if (isLeftTab === true) {
+            return (
+                <InputImageBody setSubWindow={setSubWindow} setResultSubWindow={setResultSubWindow} isLeftTab={isLeftTab} image={image} setImage={setImage} setMask={setMask} setCompleteContour={setCompleteContour}/>
+            )
+        }
+        else {
+            return (
+                <div className='image-body'>
+                    <div className='lasso-box'>
+                        <img src={image} alt="error while rendering input" style={{'height':'40vh'}}/>
+                    </div>
+                    <div className='edit-buttons-field'>
+                        <RemoveImage type="button" onClick={onRemoveImageClick}/>
+                    </div>
+                </div>
+            )     
+        }
+    }
+    else return  <InputDrop setSubWindow={setSubWindow} setResultSubWindow={setResultSubWindow} setImage={setImage} image={image}/>;
+} 
+
+function ExpandParams({blockChange, service, setService, isLeftTab, setModelName, image, prompt, setPrompt, width, setWidth, height, setHeight, similatiry, setSimilarity, genSteps, setGenSteps, promptInfluence, setpromptInfluence}) {
     if (image !== null) {
         return (
             <>
                 <PromptBlock prompt={prompt} setPrompt={setPrompt}/>
-                <ParamBlock label={'Ширина'} min={100} max={1920} defaultValue={width} setDefaultValue={setWidth} measure={'px'}/>
-                <ParamBlock label={'Высота'} min={100} max={1080} defaultValue={height} setDefaultValue={setHeight} measure={'px'}/>
-                <ParamBlock label={'Схожесть'} min={1} max={10} defaultValue={similatiry} setDefaultValue={setSimilarity}/>
+                <ServiceInput blockChange={blockChange} isLeftTab={isLeftTab} setService={setService}/>
+                <ModelInput blockChange={blockChange} service={service} isLeftTab={isLeftTab} setModelName={setModelName}/>
+                <ParamBlock label={'Ширина'} min={64} max={1024} defaultValue={width} setDefaultValue={setWidth} measure={'px'}/>
+                <ParamBlock label={'Высота'} min={64} max={1024} defaultValue={height} setDefaultValue={setHeight} measure={'px'}/>
                 <ParamBlock label={'Шаги генерации'} min={1} max={100} defaultValue={genSteps} setDefaultValue={setGenSteps}/>
-                <ParamBlock label={'Шаги последовательной генерации'} min={0} max={4} defaultValue={consistentSteps} setDefaultValue={setConsistentSteps}/>
+                <ParamBlock label={'Схожесть'} min={1} max={10} defaultValue={similatiry} setDefaultValue={setSimilarity}/>
+                <ParamBlock label={'Влияние подсказки'} min={1} max={24} defaultValue={promptInfluence} setDefaultValue={setpromptInfluence}/>
             </>
         )
     }
@@ -45,39 +62,48 @@ function ExpandParams({image, prompt, setPrompt, width, setWidth, height, setHei
 
 
 
-export function InputWindow({promptProgress, applyGenPrompt, promptGenStarted, genPrompt, image, setImage, prompt, setPrompt, setMask, width, setWidth, height, setHeight, similatiry, setSimilarity, genSteps, setGenSteps, consistentSteps, setConsistentSteps}) {
-    const [isCompleteContour, setCompleteContour] = useState(false);
+export function InputWindow({setSubWindow, setResultSubWindow, fixSubWindow, blockChange, service, setService, isLeftTab, onLeftTabClick, onRightTabClick, 
+    setModelName, cancelPromptGet, setCompleteContour, applyGenPrompt, promptGenStarted, genPrompt, image, setImage, prompt, setPrompt, setMask, width, 
+    setWidth, height, setHeight, similatiry, setSimilarity, genSteps, setGenSteps, promptInfluence, setpromptInfluence}) {
+    
 
-    function ExpandSelectionPrompt({isCompleteContour, promptGenStarted, genPrompt, applyGenPrompt, promptProgress}) {
+    function ExpandSelectionPrompt({isImageSet, promptGenStarted, genPrompt, applyGenPrompt}) {
 
-        if (isCompleteContour === true) {
+        if (isImageSet !== null) {
             return (
                 <>
-                    <GenerateProgress progress={promptProgress} promptGenStarted={promptGenStarted}/>
-                    <SelectionToPromptBlock onClick={applyGenPrompt} genPrompt={genPrompt}/>
+                    <GenerateProgress promptGenStarted={promptGenStarted} cancelPromptGet={cancelPromptGet}/>
+                    <SelectionToPromptBlock onClick={applyGenPrompt} genPrompt={genPrompt} promptGenStarted={promptGenStarted}/>
                 </>
             )
         }
     }
     
-    function GenerateProgress({progress, promptGenStarted}) {
+    function GenerateProgress({promptGenStarted, cancelPromptGet}) {
         if (promptGenStarted === true) {
             return (
-                <div className="progress-div">
-                    <div style={{ width: `${progress}%` }} className="progress">
-                        <RenderProgressText progress={progress}/>
+                <>
+                    <div className="prompt-loading">
+                        <ReactLoading type={"spin"} color={"#FFBB55"} height={"5%"} width={"5%"} />
                     </div>
-                </div>
+                    <button className='reject-button' type='button' onClick={cancelPromptGet}>
+                        <p className='result-button-text'>
+                            Отменить генерацию
+                        </p>
+                    </button>
+                </>
             )
         }
     }
-
     return (
-        <div className="sub-window">
-            <ImageOrDropBody image={image} setImage={setImage} setMask={setMask} setCompleteContour={setCompleteContour}/>
-            <ExpandSelectionPrompt isCompleteContour={isCompleteContour} promptGenStarted={promptGenStarted} genPrompt={genPrompt} applyGenPrompt={applyGenPrompt} promptProgress={promptProgress}/>
-            <ExpandParams image={image} prompt={prompt} setPrompt={setPrompt} width={width} setWidth={setWidth} height={height} setHeight={setHeight}
-            similatiry={similatiry} setSimilarity={setSimilarity} genSteps={genSteps} setGenSteps={setGenSteps} consistentSteps={consistentSteps} setConsistentSteps={setConsistentSteps}/>
+        <div className="result-box">
+            <InputTabBox image={image} isLeftTab={isLeftTab} textLeft={"Выделение"} textRight={"Инструкция"} onLeftTabClick={onLeftTabClick} onRightTabClick={onRightTabClick}/>
+            <div className={fixSubWindow}>
+                <ImageOrDropBody setWidth={setWidth} setHeight={setHeight} setSubWindow={setSubWindow} setResultSubWindow={setResultSubWindow} isLeftTab={isLeftTab} image={image} setImage={setImage} setMask={setMask} setCompleteContour={setCompleteContour}/>   
+                <ExpandSelectionPrompt isImageSet={image} promptGenStarted={promptGenStarted} genPrompt={genPrompt} applyGenPrompt={applyGenPrompt}/>
+                <ExpandParams blockChange={blockChange} service={service} setService={setService} isLeftTab={isLeftTab} setModelName={setModelName} image={image} prompt={prompt} setPrompt={setPrompt} width={width} setWidth={setWidth} height={height} setHeight={setHeight}
+                similatiry={similatiry} setSimilarity={setSimilarity} genSteps={genSteps} setGenSteps={setGenSteps} promptInfluence={promptInfluence} setpromptInfluence={setpromptInfluence}/>
+            </div>
         </div>
     )
 }

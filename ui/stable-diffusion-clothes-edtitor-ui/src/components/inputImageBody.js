@@ -2,10 +2,12 @@ import ReactLassoSelect, { getCanvas } from 'react-lasso-select';
 import {useState} from 'react'
 import {ClearPoints, RemoveImage, RemoveLastPoint} from './lassoButtons';
 
-export function InputImageBody({image, setImage, setMask, setCompleteContour}) {
+export function InputImageBody({setSubWindow, setResultSubWindow, image, setImage, setMask, setCompleteContour}) {
     const [points, setPoints] = useState([]);
 
     function onRemoveImageClick() {
+        setSubWindow("fix-sub-window");
+        setResultSubWindow("fix-result-sub-window");
         setCompleteContour(false);
         setImage(null);
     };
@@ -22,7 +24,7 @@ export function InputImageBody({image, setImage, setMask, setCompleteContour}) {
         <>
             <div className="image-body">
                 <div className='lasso-box'>
-                <ReactLassoSelect
+                    <ReactLassoSelect
                         value={points}
                         src={image}
                         style={{display: 'flex', justifyContent:'center', width:'fit-content'}}
@@ -33,7 +35,7 @@ export function InputImageBody({image, setImage, setMask, setCompleteContour}) {
                         }}
                         onComplete={value => {
                             if (!value.length) return;
-                            getCanvas(image, value, (err, canvas) => {
+                            getCanvas(image, value, (err) => {
                                 if (!err) {
                                     if (points.length > 2)
                                     {

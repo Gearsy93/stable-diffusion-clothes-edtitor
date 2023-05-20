@@ -9,6 +9,8 @@ export function ParamBlock({label, min, max, defaultValue, setDefaultValue, meas
     const [width, setWidth] = useState(0);
     const span = useRef();
 
+    const step = measure === 'px' ? 64 : 1;
+
     useEffect(() => {
         setWidth(span.current.offsetWidth);     
 
@@ -29,34 +31,41 @@ export function ParamBlock({label, min, max, defaultValue, setDefaultValue, meas
 
     const handleChange = event =>  {
         if (isNumeric(event.target.value)) {
-            if (event.target.value < min) {
-                setContent(min)
-               setDefaultValue(min)
+            let value = event.target.value;
+            if (measure === 'px') {
+                let floor_times = parseInt(value / 64);
+                value = floor_times * 64
             }
-            else if (event.target.value > max) {
+
+            if (value < min) {
+                setContent(min)
+                setDefaultValue(min)
+            }
+            else if (value > max) {
                 setContent(max)
                 setDefaultValue(max)
             }
             else {
-                setContent(event.target.value)
-                setDefaultValue(event.target.value)
+                setContent(value)
+                setDefaultValue(value)
             }
         } 
     };
 
     const handleManualChange = event => {
         if (isNumeric(event.target.value)) {
-            if (event.target.value < min) {
+            let value = event.target.value;
+            if (value < min) {
                 setContent(min)
                 setDefaultValue(min)
             }
-            else if (event.target.value > max) {
+            else if (value > max) {
                 setContent(max)
                 setDefaultValue(max)
             }
             else {
-                setContent(event.target.value)
-                setDefaultValue(event.target.value)
+                setContent(value)
+                setDefaultValue(value)
             }
         }
     }
@@ -69,7 +78,7 @@ export function ParamBlock({label, min, max, defaultValue, setDefaultValue, meas
                 </p>
             </div>
             <div className="param-input-body">
-                <input className="styled-slider slider-progress" type="range" min={min} max={max} value={content} onChange={handleChange} step="1"/>
+                <input className="styled-slider slider-progress" type="range" min={min} max={max} value={content} onChange={handleChange} step={step}/>
                 <div style={{userSelect: 'none'}}>
                     <span id="hide" ref={span} style={{userSelect: 'none'}}>{content}</span>
                     <input type='text' className='param-output' style={{ width, userSelect: 'none'}} autoFocus onChange={handleManualChange}/>

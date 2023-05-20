@@ -1,12 +1,9 @@
-import { IconContext } from "react-icons";
+import {IconContext} from "react-icons";
 import {IoCloudUploadOutline} from "react-icons/io5";
 import {useState, useRef} from "react";
 
-export function InputDrop({setImage}) {
-
-    // drag state
+export function InputDrop({setSubWindow, setResultSubWindow, setImage}) {
     const [dragActive, setDragActive] = useState(false);
-    // ref
     const inputRef = useRef(null);
 
     // handle drag events
@@ -26,6 +23,8 @@ export function InputDrop({setImage}) {
         e.stopPropagation();
         setDragActive(false);
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            setSubWindow("sub-window");
+            setResultSubWindow("result-sub-window");
             setImage(URL.createObjectURL(e.dataTransfer.files[0]));
         }
     };
@@ -34,6 +33,8 @@ export function InputDrop({setImage}) {
     const handleChange = function(e) {
         e.preventDefault();
         if (e.target.files && e.target.files[0]) {
+            setSubWindow("sub-window");
+            setResultSubWindow("result-sub-window");
             setImage(URL.createObjectURL(e.target.files[0]));
         }
     };

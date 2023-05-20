@@ -96,10 +96,17 @@
     border: none;
     font-family: "Montserrat Medium";
     font-size: 16px; 
-    padding: 20px;
+    padding: 10px;
     padding-bottom: 5px;
     padding-top: 5px;
     height: fit-content;
+}
+
+.prompt-loading {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .apply-selection-button:hover {
@@ -109,7 +116,6 @@
 .apply-selection-button:active {
   background: #FFBB55;
 }
-
 
 .prompt-generation-result-box {
   background: #f5e8d5;
@@ -240,7 +246,7 @@ input[type=range].styled-slider.slider-progress:active::-webkit-slider-runnable-
 }
 
 #label-file-upload {
-  height: 50vh;
+  height: calc(50vh - 34px);;
   width: 100%;
   display: flex;
   align-items: center;
@@ -312,4 +318,54 @@ input[type=range].styled-slider.slider-progress:active::-webkit-slider-runnable-
 /* Измененеи размера поля ввода подсказки */
 textarea {
   resize: none;
+}
+
+/* Вкладки выделение и инструкции */
+.input-box {
+  display: grid;
+  width: 50%;
+  margin: 20px;
+}
+
+.input-tab-box {
+  grid-area: 1 / 1 / 2 / 2;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.input-selected-tab {
+  border: 2px solid #FFBB55;
+  background: #FFE7C2;
+  border-radius: 8px;
+  width: fit-content; 
+  height: fit-content + 3px;
+  margin-bottom: 3px;
+  padding-top: 0px;
+}
+
+.input-not-selected-tab {
+  width: fit-content; 
+  height: fit-content;
+  padding-top: 0px;
+  margin-top: 2px;
+}
+
+.input-hide-crutch {
+  position: relative;
+  margin: 0px;
+  width: 100%;
+  height: 8px;
+  background: #FFE7C2;
+  z-index:0
+}
+
+.input-selected-tab-text {
+  margin: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  font-size: 150%;
+  font-weight: 400;
+  padding-bottom: 3px;
 }
