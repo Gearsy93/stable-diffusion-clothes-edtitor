@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
+    "cors": "^2.8.5",
     "file-saver": "^2.0.5",
     "jquery": "^3.6.4",
     "rc-progress": "^3.4.1",

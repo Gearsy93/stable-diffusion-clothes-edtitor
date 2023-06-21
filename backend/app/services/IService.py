@@ -4,10 +4,6 @@ class IService:
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    # def checkServiceAvailable(self):
-    #     raise NotImplementedError
-
-    @abstractmethod
     def getInpaintModels(self):
         raise NotImplementedError
 
@@ -24,15 +20,15 @@ class IService:
         raise NotImplementedError
 
     @abstractmethod
-    def checkImageGenerationStatus(self):
+    def checkImageGenerationStatus(self, task):
         raise NotImplementedError
 
     @abstractmethod
-    def stopImageGeneration(self):
+    def stopImageGeneration(self, task):
         raise NotImplementedError
 
     @abstractmethod
-    def getGeneratedImage(self):
+    def getGeneratedImage(self, task):
         raise NotImplementedError
 
     @abstractmethod
@@ -40,13 +36,13 @@ class IService:
         raise NotImplementedError
 
     @abstractmethod
-    def checkImageInterrogationStatus(self):
+    def checkImageInterrogationStatus(self, task):
         raise NotImplementedError
 
     @abstractmethod
-    def stopImageInterrogation(self):
+    def stopImageInterrogation(self, task):
         raise NotImplementedError
 
     @abstractmethod
-    def getInterrogationPrompt(self):
+    def getInterrogationPrompt(self, task):
         raise NotImplementedError

@@ -1,49 +1,14 @@
-import axios from "axios"
-import {useEffect, useState} from 'react'
 import Select from 'react-select';
-import {toast} from "react-toastify"
-import '../styleSheets/dropDown.css'
+import {useEffect} from 'react'
 
-export function DropDownModel({blockChange, service, isLeftTab, setModelName}) {
-  const [models, setModels] = useState([]);
-  const [dropValue, setDropValue] = useState(0);
-
+export function DropDownModel({models, dropValue, setDropValue, getModels, isLeftTab, setModelName}) {
   useEffect(() => {
-    const getModels = async () => {
-      if (service !== "") {
-        const res = await axios.get(isLeftTab === true ? "inpaintModels" : "instructModels");
-      var result = [];
-      for (var i = 0; i < res.data['models'].length; i++) {
-        result[i] = {}
-        result[i].value = res.data['models'][i]
-        result[i].label = res.data['models'][i]      
-      }
-      setModels(result)
-      setDropValue(0)
-      setModelName("")
-      }
-    }
-    getModels();
-  }, [isLeftTab, setModelName, service])
+    //getModels();
+  }, [isLeftTab])
 
   function SetCurrentValue(e) {
-    if (blockChange === true) {
-      toast.warn('В процессе генерации нельзя менять модель', {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
-    return;
-    }
-    else {
-      setDropValue(e)
-      setModelName(e.value)
-    }
+    setDropValue(e)
+    setModelName(e.value)
   }
 
   return (

@@ -1,6 +1,6 @@
-import ReactLassoSelect, { getCanvas } from 'react-lasso-select';
+import ReactLassoSelect, {getCanvas} from 'react-lasso-select';
 import {useState} from 'react'
-import {ClearPoints, RemoveImage, RemoveLastPoint} from './lassoButtons';
+import {ClearPoints, RemoveImage} from './lassoButtons';
 
 export function InputImageBody({setSubWindow, setResultSubWindow, image, setImage, setMask, setCompleteContour}) {
     const [points, setPoints] = useState([]);
@@ -14,10 +14,7 @@ export function InputImageBody({setSubWindow, setResultSubWindow, image, setImag
     
     const onClearPointsClick = () => {
         setPoints([]);
-    };
-
-    const onRemoveLastPointClick = () => {
-        setPoints(points.slice(0, -1))
+        
     };
 
     return (
@@ -27,8 +24,8 @@ export function InputImageBody({setSubWindow, setResultSubWindow, image, setImag
                     <ReactLassoSelect
                         value={points}
                         src={image}
-                        style={{display: 'flex', justifyContent:'center', width:'fit-content'}}
-                        imageStyle={{'height':'40vh'}}
+                        style={{display: 'flex', justifyContent:'center', height:'100%'}}
+                        imageStyle={{'height':'15vw'}}
                         onChange={value => {
                             setPoints(value);
                             setCompleteContour(false);
@@ -50,11 +47,8 @@ export function InputImageBody({setSubWindow, setResultSubWindow, image, setImag
                 <div className='edit-buttons-field'>
                     <RemoveImage type="button" onClick={onRemoveImageClick}/>
                     <ClearPoints type="button" onClick={onClearPointsClick}/>
-                    <RemoveLastPoint type="button" onClick={onRemoveLastPointClick}/>
                 </div>
             </div>  
         </>
     ) 
 }
-
-//<button className="apply-selection-button" type="button">

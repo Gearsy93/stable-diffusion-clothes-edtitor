@@ -3,6 +3,7 @@ from pydantic import BaseModel
 class GenerateParams(BaseModel):
     image: str
     mask: str
+    service: str
     model: str
     prompt: str
     width: int
@@ -13,6 +14,9 @@ class GenerateParams(BaseModel):
 
 class PromptGenerateParams(BaseModel):
     image: str
+    service: str
 
 class Service(BaseModel):
     service: str
+
+# class TaskOut(BaseModel):

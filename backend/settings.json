@@ -4,5 +4,7 @@
   "aihorde_karras": "True",
   "aihorde_sampler_name": "k_lms",
   "facefixer_strength": 0.75,
-  "automatic-host": "http://212.33.245.26:63000"
+  "automatic-host": "http://212.33.245.26:63000",
+  "redis_host": "localhost",
+  "redis_port": "6379"
 }

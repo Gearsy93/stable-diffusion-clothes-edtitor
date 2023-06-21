@@ -1,3 +1,27 @@
 {
-    "host": "http://localhost:8000"
+    "host": " https://7a17-188-19-253-151.ngrok-free.app",
+    "instructHorde": {
+        "name": "pix2pix",
+        "steps": "30",
+        "similarity": "6",
+        "influence": "21"
+    },
+    "instructAutomatic": {
+        "name": "instruct-pix2pix-00-22000",
+        "steps": "30",
+        "similarity": "6",
+        "influence": "21"
+    },
+    "inpaintHorde": {
+        "name": "epic diffusion inpainting",
+        "steps": "25",
+        "similarity": "10",
+        "influence": "19"
+    },
+    "inpaintAutomatic":  {
+        "name": "hardblend_Inpainting",
+        "steps": "25",
+        "similarity": "10",
+        "influence": "19"
+    }
 }

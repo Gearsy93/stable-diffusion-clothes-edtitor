@@ -1,5 +1,5 @@
-import { IconContext } from "react-icons";
-import {IoReload, IoArrowUndoOutline, IoClose} from "react-icons/io5";
+import {IconContext} from "react-icons";
+import {IoReload, IoClose} from "react-icons/io5";
 
 export function RemoveImage({onClick}) {
     return (
@@ -20,14 +20,3 @@ export function ClearPoints({onClick}) {
         </IconContext.Provider>
     )
 }
-
-export function RemoveLastPoint({onClick}) {
-    return (
-        <IconContext.Provider value={{ color: "#FFBB55", className: "io5", size: "23px"}}>
-            <div className="edit-button-shape" onClick={onClick}>
-                <IoArrowUndoOutline/>
-            </div>
-        </IconContext.Provider>
-    )
-}
-

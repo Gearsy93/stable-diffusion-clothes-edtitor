@@ -12,18 +12,25 @@
     height: 80%;
 }
 
-.result-tab {
+.result-selected-tab {
     border: 2px solid #FFBB55;
-    border-radius: 8px;
+  background: #FFE7C2;
+  border-radius: 8px;
+  width: fit-content; 
+  height: fit-content;
+  margin-bottom: 3px;
+  padding-top: 0px;
+  }
+  
+.result-not-selected-tab {
     width: fit-content; 
     height: fit-content;
     padding-top: 0px;
-    padding-bottom: 4px;
-    grid-area: 1 / 1 / 2 / 2;
+    margin-top: 2px;
 }
 
 .result-sub-window {
-    background: #FFF4E2;
+    background: #FFE7C2;
     margin-top: 35px !important;
     height: fit-content;
     width: auto;
@@ -134,4 +141,29 @@
 .reject-button:active {
     background: #ff1f1f;
     border: 2px solid #ff1f1f;
+}
+
+/* История */
+.history-block {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(50vh - 34px);
+}
+
+.history-splash {
+    display: flex;
+    flex-grow: 1;
+    align-self: center;
+    vertical-align: middle;
+    justify-content: center;
+    flex-flow: column;
+    
+}
+
+.history-splash-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 450;
 }

@@ -1,19 +1,20 @@
 import {IconContext} from "react-icons";
-import {IoCloudUploadOutline} from "react-icons/io5";
 import {useState, useRef} from "react";
+import {IoCloudUploadOutline} from "react-icons/io5";
+
 
 export function InputDrop({setSubWindow, setResultSubWindow, setImage}) {
     const [dragActive, setDragActive] = useState(false);
     const inputRef = useRef(null);
-
+    
     // handle drag events
     const handleDrag = function(e) {
         e.preventDefault();
         e.stopPropagation();
         if (e.type === "dragenter" || e.type === "dragover") {
-        setDragActive(true);
+            setDragActive(true);
         } else if (e.type === "dragleave") {
-        setDragActive(false);
+            setDragActive(false);
         }
     };
     
@@ -43,6 +44,7 @@ export function InputDrop({setSubWindow, setResultSubWindow, setImage}) {
     const onButtonClick = () => {
         inputRef.current.click();
     };
+    
     return (
         <form className="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
             <input ref={inputRef} type="file" className="input-file-upload" multiple={true} onChange={handleChange} />

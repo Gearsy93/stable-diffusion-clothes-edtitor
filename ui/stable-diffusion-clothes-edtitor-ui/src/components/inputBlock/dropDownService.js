@@ -1,86 +1,14 @@
-import axios from "axios"
-import {useEffect, useState} from 'react'
+import {useEffect} from 'react'
 import Select from 'react-select';
-import {toast} from "react-toastify"
-import '../styleSheets/dropDown.css'
 
-export function DropDownModel({isLeftTab, blockChange, setService}) {
-    const [services, setServices] = useState([]);
-    const [dropValue, setDropValue] = useState(0);
-  
+export function DropDownModel({getServices, services, dropValueService, setDropValueService, isLeftTab, setService}) {
     useEffect(() => {
-      const getModels = async () => {
-        try {
-            const res = await axios.get("checkAvailableServices");
-            var result = [];
-            if (res.data['automatic'] === true) {
-                result[0] = {}
-                result[0].value = 'automatic'
-                result[0].label = 'Automatic1111'
-            }
-            if (res.data['aihorde'] === true) {
-                result[1] = {}
-                result[1].value = 'aihorde'
-                result[1].label = 'Ai Horde'
-            }
-            setServices(result)
-            setService("")
-            setDropValue(0)
-        }
-        catch(e) {
-            toast.error('Сервер недоступен', {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                });
-                return;
-        }
-      }
-      getModels();
-    }, [setService, isLeftTab])
+      //getServices();
+    }, [isLeftTab])
   
     async function SetCurrentValue(e) {
-      if (blockChange === true) {
-        toast.warn('В процессе генерации нельзя менять сервис', {
-            position: "top-center",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
-            return;
-      }
-      else {
-        await axios.post("setService", {
-            service: e.value
-        })
-            .then(res => {
-                if (res.data['status'] !== 200) {
-                    toast.error('Ошибка во время выбора сервиса', {
-                        position: "top-center",
-                        autoClose: 1000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                        });
-                    return;
-                }
-            })
-        setDropValue(e)
-        
-        setService(e.value)
-      }
+      setDropValueService(e)
+      setService(e.value)
     }
   
     return (
@@ -90,7 +18,7 @@ export function DropDownModel({isLeftTab, blockChange, setService}) {
                 inputId="aria-example-input"
                 name="aria-live-color"
                 options={services}
-                value={dropValue}
+                value={dropValueService}
                 placeholder="Название сервиса"
                 onChange={e => SetCurrentValue(e)}
                 styles={{

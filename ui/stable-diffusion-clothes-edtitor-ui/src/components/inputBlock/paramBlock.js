@@ -1,14 +1,11 @@
 import {useState, useRef, useEffect} from 'react';
 
-
-//Change Output to Input (чтоб можно было вводить значения)
-
 export function ParamBlock({label, min, max, defaultValue, setDefaultValue, measure}) {
-    const measureValue = measure === undefined ? '' : measure;
     const [content, setContent] = useState(defaultValue);
     const [width, setWidth] = useState(0);
+    
+    const measureValue = measure === undefined ? '' : measure;
     const span = useRef();
-
     const step = measure === 'px' ? 64 : 1;
 
     useEffect(() => {
@@ -21,7 +18,7 @@ export function ParamBlock({label, min, max, defaultValue, setDefaultValue, meas
             e.style.setProperty('--max', e.max === '' ? '100' : e.max);
             e.addEventListener('input', () => e.style.setProperty('--value', e.value));
           }    
-    }, [content]);
+    }, [content, defaultValue]);
 
     function isNumeric(str) {
         if (typeof str != "string") return false // we only process strings!  
@@ -30,6 +27,7 @@ export function ParamBlock({label, min, max, defaultValue, setDefaultValue, meas
       }
 
     const handleChange = event =>  {
+        
         if (isNumeric(event.target.value)) {
             let value = event.target.value;
             if (measure === 'px') {
@@ -53,6 +51,7 @@ export function ParamBlock({label, min, max, defaultValue, setDefaultValue, meas
     };
 
     const handleManualChange = event => {
+        console.log('some sssaa')
         if (isNumeric(event.target.value)) {
             let value = event.target.value;
             if (value < min) {

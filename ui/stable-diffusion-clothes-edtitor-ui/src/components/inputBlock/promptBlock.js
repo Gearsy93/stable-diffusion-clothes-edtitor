@@ -1,10 +1,11 @@
 import {Textarea} from '@nextui-org/react';
 
-export function PromptBlock({prompt, setPrompt}) {
+export function PromptBlock({setPrompt}) {
 
     const OnPromptChange = function(e) {
         setPrompt(e.target.value);
     }
+    
     return (
         <div className="param-input">
             <div className="param-input-label">
@@ -18,5 +19,3 @@ export function PromptBlock({prompt, setPrompt}) {
         </div>
     )
 }
-
-//<input type='text' className="manualPrompt" value={prompt} placeholder="prompt text" onChange={OnPromptChange}/>
